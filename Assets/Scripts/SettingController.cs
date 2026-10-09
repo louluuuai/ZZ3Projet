@@ -1,22 +1,25 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private Toggle fullscreenToggle;
 
-    // 分辨率下拉框
+    // Dropdown reference for resolution selection
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
-    // 保存每个选项对应的宽度、高度
+    // save the supported resolutions in a list
     private readonly List<Vector2Int> resolutions =
         new List<Vector2Int>();
 
     private void Start()
     {
         InitializeResolutions();
+        fullscreenToggle.SetIsOnWithoutNotify(Screen.fullScreen);
         CloseSettings();
     }
 
@@ -25,7 +28,7 @@ public class SettingsController : MonoBehaviour
         resolutions.Clear();
         List<string> options = new List<string>();
 
-        // 获取显示器支持的分辨率
+        // get all supported resolutions and add them to the list
         foreach (Resolution resolution in Screen.resolutions)
         {
             Vector2Int size = new Vector2Int(
@@ -33,7 +36,7 @@ public class SettingsController : MonoBehaviour
                 resolution.height
             );
 
-            // 不重复添加相同的宽度、高度
+            // don't add duplicate resolutions
             if (!resolutions.Contains(size))
             {
                 resolutions.Add(size);
@@ -41,7 +44,7 @@ public class SettingsController : MonoBehaviour
             }
         }
 
-        // 确保列表包含当前游戏窗口的尺寸
+        // ensure the current resolution is included in the list
         Vector2Int currentSize =
             new Vector2Int(Screen.width, Screen.height);
 
@@ -63,6 +66,7 @@ public class SettingsController : MonoBehaviour
     public void OpenSettings()
     {
         mainMenuPanel.SetActive(false);
+
         settingsPanel.SetActive(true);
     }
 
@@ -70,6 +74,7 @@ public class SettingsController : MonoBehaviour
     {
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+        fullscreenToggle.SetIsOnWithoutNotify(Screen.fullScreen);
     }
 
     public void ApplyResolution()
@@ -77,10 +82,11 @@ public class SettingsController : MonoBehaviour
         int index = resolutionDropdown.value;
         Vector2Int size = resolutions[index];
 
-        Screen.SetResolution(
-            size.x,
-            size.y,
-            Screen.fullScreenMode
-        );
+        // toggle fullscreen mode based on the fullscreen toggle state
+        FullScreenMode mode = fullscreenToggle.isOn
+            ? FullScreenMode.FullScreenWindow
+            : FullScreenMode.Windowed;
+
+        Screen.SetResolution(size.x, size.y, mode);
     }
 }
