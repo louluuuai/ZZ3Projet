@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 631895631}
   - component: {fileID: 631895630}
   m_Layer: 0
-  m_Name: NavigationManager
+  m_Name: SpaceshipManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

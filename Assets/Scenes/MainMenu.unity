@@ -731,6 +731,7 @@ GameObject:
   - component: {fileID: 378598124}
   - component: {fileID: 378598123}
   - component: {fileID: 378598125}
+  - component: {fileID: 378598126}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -750,7 +751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7890f9dc3f01441a46f132ac9d1a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameSceneName: GameScene
 --- !u!4 &378598124
 Transform:
   m_ObjectHideFlags: 0
@@ -782,6 +782,18 @@ MonoBehaviour:
   settingsPanel: {fileID: 1289928123}
   fullscreenToggle: {fileID: 776677275}
   resolutionDropdown: {fileID: 906010047}
+--- !u!114 &378598126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378598122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571b8a211de934104899c5e312b5f494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneNavigation
 --- !u!1 &456858576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1289928124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3119,9 +3131,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378598123}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 378598126}
+        m_TargetAssemblyTypeName: SceneNavigation, Assembly-CSharp
+        m_MethodName: GoToSpaceship
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
