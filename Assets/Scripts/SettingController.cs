@@ -8,6 +8,8 @@ public class SettingsController : MonoBehaviour
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private AudioSource musicSource;
 
     // Dropdown reference for resolution selection
     [SerializeField] private TMP_Dropdown resolutionDropdown;
@@ -20,7 +22,15 @@ public class SettingsController : MonoBehaviour
     {
         InitializeResolutions();
         fullscreenToggle.SetIsOnWithoutNotify(Screen.fullScreen);
+
+        musicVolumeSlider.SetValueWithoutNotify(musicSource.volume);
+
         CloseSettings();
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = volume;
     }
 
     private void InitializeResolutions()
