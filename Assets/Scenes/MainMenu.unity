@@ -782,7 +782,7 @@ MonoBehaviour:
   settingsPanel: {fileID: 1289928123}
   fullscreenToggle: {fileID: 776677275}
   musicVolumeSlider: {fileID: 1109934602}
-  musicSource: {fileID: 0}
+  musicSource: {fileID: 2086024805}
   resolutionDropdown: {fileID: 906010047}
 --- !u!114 &378598126
 MonoBehaviour:
