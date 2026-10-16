@@ -8,13 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _moveInput;
     
-    //Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Keyboard.current == null)
         {
@@ -23,29 +22,29 @@ public class PlayerMovement : MonoBehaviour
         }
         
         Vector2 input = Vector2.zero;
-        if (Keyboard.current.wKey.isPressed)
+        if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
         {
             input.y += 1f;
         }
 
-        if (Keyboard.current.sKey.isPressed)
+        if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
         {
             input.y -= 1f;
         }
 
-        if (Keyboard.current.aKey.isPressed)
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             input.x -= 1f;
         }
 
-        if (Keyboard.current.dKey.isPressed)
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) 
         {
             input.x += 1f;
         }
         _moveInput = input.normalized;
     }
     
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _rb.linearVelocity = baseSpeed * _moveInput;
     }
